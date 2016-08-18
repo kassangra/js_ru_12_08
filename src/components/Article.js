@@ -9,6 +9,7 @@ export default class Article extends Component {
 
     render() {
         const { article } = this.props
+        //Почему бы не поместить эту логику в CommentList?
         const comments = article.comments && article.comments.length ? <CommentList comments = {article.comments}/> : <h5>No comments</h5>
         const body = this.state.isOpen ? <section>{article.text}{comments}</section> : null
         return (
