@@ -3,16 +3,6 @@ import CommentList from './CommentList'
 import toggleOpen from '../decorators/toggleOpen'
 
 class Article extends Component {
-/*
-
-    constructor() {
-        super()
-        this.state = {
-            isOpen: false
-        }
-    }
-
-*/
     static propTypes = {
         article: PropTypes.object.isRequired
     }
