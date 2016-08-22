@@ -3,6 +3,7 @@ import Article from './Article'
 import ToggleAccordion from '../decorators/toggleAccordion'
 
 class ArticleList extends Component {
+    // теперь этот компонент расчитывает так же на isOpen и toggleOpen. Рекомендую их тоже описать
     static propTypes = {
         articles: PropTypes.array.isRequired
     }
