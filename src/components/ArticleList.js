@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import Article from './Article'
+import ToggleAccordion from '../decorators/toggleAccordion'
 
-export default class ArticleList extends Component {
-    state = {
-        openArticleId: null
-    }
-
+class ArticleList extends Component {
+    
     render() {
+        const {isOpen, toggleOpen } = this.props
         const articleItems = this.props.articles.map(articleObject =>
             <li key = {articleObject.id}>
-                <Article article = {articleObject}
-                    isOpen = {this.state.openArticleId === articleObject.id}
-                    toggleOpen = {this.toggleOpenArticle(articleObject.id)}
-                />
+                <Article article = {articleObject} isOpen = { isOpen(articleObject.id) }  toggleOpen = { toggleOpen(articleObject.id)} />
             </li>)
         return (
             <ul>
@@ -20,11 +16,6 @@ export default class ArticleList extends Component {
             </ul>
         )
     }
-
-    toggleOpenArticle = id => ev => {
-        if (ev) ev.preventDefault()
-        this.setState({
-            openArticleId: this.state.openArticleId !== id ? id : null
-        })
-    }
 }
+
+export default ToggleAccordion(ArticleList)
