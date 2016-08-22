@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
-import CommentList from './CommentList';
+import React, { Component, PropTypes } from 'react'
+import CommentList from './CommentList'
+import toggleOpen from '../decorators/toggleOpen'
 
+class Article extends Component {
+/*
 
-export default class Article extends Component {
-    state = {
-        isOpen: false
+    constructor() {
+        super()
+        this.state = {
+            isOpen: false
+        }
+    }
+
+*/
+    static propTypes = {
+        article: PropTypes.object.isRequired
     }
 
     render() {
-        const { article } = this.props
-        //Почему бы не поместить эту логику в CommentList?
-        const comments = article.comments && article.comments.length ? <CommentList comments = {article.comments}/> : <h5>No comments</h5>
-        const body = this.state.isOpen ? <section>{article.text}{comments}</section> : null
+        const { article: { text, title, comments}, isOpen, toggleOpen } = this.props
+        const body = isOpen ? <section>{text}<CommentList comments = {comments}/></section> : null
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                <h3 onClick = {toggleOpen}>{title}</h3>
                 {body}
             </div>
         )
     }
-
-    handleClick = (ev) => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 }
+export default Article

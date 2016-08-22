@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes, createClass } from 'react'
 import Comment from './Comment'
-import toggleOpen from '../decorators/toggleOpen'
+import toggleOpen from '../mixins/toggleOpen'
 
-class CommentList extends Component {
+const CommentList = createClass({
+    mixins: [toggleOpen],
+
     render() {
-        const { comments, isOpen, toggleOpen } = this.props
-
+        const { comments } = this.props
+        const { isOpen } = this.state
         if (!comments || !comments.length) return <p>No comments yet</p>
-        const toggleButton = <a href="#" onClick = {toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
+        const toggleButton = <a href="#" onClick = {this.toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
 
         if (!isOpen) return <div>{toggleButton}</div>
 
@@ -20,6 +22,7 @@ class CommentList extends Component {
             </div>
         )
     }
-}
 
-export default toggleOpen(CommentList)
+})
+
+export default CommentList
