@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import ToggleAccordion from '../decorators/toggleAccordion'
 
 class ArticleList extends Component {
+    static propTypes = {
+        articles: PropTypes.array.isRequired
+    }
     
     render() {
         const {isOpen, toggleOpen } = this.props
