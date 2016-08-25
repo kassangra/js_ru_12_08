@@ -4,11 +4,9 @@ import toggleOpen from '../decorators/toggleOpen'
 
 class Article extends Component {
     static propTypes = {
-        article: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            text: PropTypes.string,
-            comments: PropTypes.array
-        })
+        article: PropTypes.object.isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
 
     render() {
